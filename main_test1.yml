@@ -1,0 +1,16 @@
+hosts:
+  - device: ROUTER1
+    username : user
+    passwd: password
+tests:
+  - test_check_fpc.yml
+  - test_check_alarms.yml 
+  - test_check_interfaces.yml
+  - test_check_fabric_hiend_mx.yml
+  - test_check_ldp.yml
+  - test_check_ospf.yml 
+  - test_check_core.yml
+  - test_check_cfm.yml 
+  - test_check_bgp.yml
+  - test_check_bfd.yml
+  - test_check_interfaces_errors.yml 
