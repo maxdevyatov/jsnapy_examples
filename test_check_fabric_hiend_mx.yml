@@ -1,0 +1,24 @@
+tests_include:
+- show_chassis_fabric
+
+#############################
+#Check FPC status and health
+#############################
+show_chassis_fabric:
+  - command: show chassis fabric summary extended 
+  - iterate:
+      xpath: fm-ext-state-item
+      id: './plane-slot'
+      tests:
+        - is-in: state, Online, Spare
+          info: "PASSED! Fabric plane {{id_0}} state {{post['state']}}"
+          err: "FAILED! Fabric plane {{id_0}} state {{post['state']}}"
+        - is-equal: link-error, NO
+          info: "PASSED! Fabric plane {{id_0}} link errors {{post['link-error']}}"
+          err: "FAILED! Fabric plane {{id_0}} link errors {{post['link-error']}}"
+        - is-equal: link-tf, NO
+          info: "PASSED! Fabric plane {{id_0}} link TF {{post['link-tf']}}"
+          err: "FAILED! Fabric plane {{id_0}} link TF {{post['link-tf']}}"
+        - is-equal: destination-error, NO/  NO
+          info: "PASSED! Fabric plane {{id_0}} destination errors {{post['destination-error']}}"
+          err: "FAILED! Fabric plane {{id_0}} destination errors {{post['destination-error']}}"

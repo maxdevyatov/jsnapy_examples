@@ -1,0 +1,18 @@
+tests_include:
+- show_interface_description
+#############################
+#Check interface status
+#############################
+show_interface_description:
+  - command:  show interfaces descriptions
+  - iterate:
+      xpath: //physical-interface
+      id: name
+      tests:
+        - is-equal: admin-status, up
+          info: "PASSED! Interface {{id_0}} admin-status {{post['admin-status']}}"
+          err: "FAILED! Interface {{id_0}} admin-status {{post['admin-status']}}"
+        - is-equal: oper-status, up
+          info: "PASSED! Interface {{id_0}} link {{post['oper-status']}}"
+          err: "FAILED! Interface {{id_0}} link {{post['oper-status']}}"
+

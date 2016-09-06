@@ -1,0 +1,14 @@
+tests_include:
+  - check_core
+#############################
+#Check core files
+#############################
+check_core:
+  - command: show system core-dumps routing-engine both
+  - iterate:
+      xpath: '//multi-routing-engine-results/multi-routing-engine-item/directory-list'
+      tests:
+          - not-exists: ./directory/file-information/file-name
+            err: "Test  Failed!!core file exist <{{post['./directory/file-information/file-name']}}> on {{post['./../re-name']}}"
+            info: "Test Succeeded!!!There is no core file"
+

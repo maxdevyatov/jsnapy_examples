@@ -1,0 +1,14 @@
+tests_include:
+- check_bfd
+#############################
+#Check BFD status
+#############################
+check_bfd:
+  - command:  show bfd session
+  - iterate:
+      xpath: bfd-session
+      id: session-neighbor
+      tests:
+        - is-equal: session-state, Up
+          info: "PASSED! BFD session {{id_0}} interface {{post['session-interface']}} is  {{post['session-state']}}"
+          err: "FAILED! BFD session {{id_0}} interface {{post['session-interface']}} is  {{post['session-state']}}"

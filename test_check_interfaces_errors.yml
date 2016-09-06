@@ -1,0 +1,33 @@
+tests_include:
+- show_interface_extensive
+#############################
+#Check interface error counters
+#############################
+show_interface_extensive:
+  - command:  show interfaces extensive "[gxe][et]-*/[0-9]"
+  - iterate:
+      xpath: //physical-interface
+      id: name
+      tests:
+        - is-equal: input-error-list/input-resource-errors, 0
+          info: "PASSED! Interface {{id_0}} has no errors"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-resource-errors']}} resource errors"
+      tests:
+        - is-equal: input-error-list/input-resource-errors, 0
+          info: "PASSED! Interface {{id_0}} has no input resource errors"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-resource-errors']}} input resource errors"
+        - is-equal: output-error-list/output-resource-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output resource errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-resource-errors']}} output resource errors"
+        - is-equal: input-error-list/input-errors, 0
+          info: "PASSED! Interface {{id_0}} has no input errors"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-errors']}} input errors"
+        - is-equal: output-error-list/output-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-errors']}} output errors"
+        - is-equal: input-error-list/input-drops, 0
+          info: "PASSED! Interface {{id_0}} has no input drops"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-drops']}} input drops"
+        - is-equal: output-error-list/output-drops, 0
+          info: "PASSED! Interface {{id_0}} has no output drops"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-drops']}} output drops"

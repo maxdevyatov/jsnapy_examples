@@ -1,0 +1,23 @@
+tests_include:
+- show_ospf_interface
+- ospf_overload
+#############################
+#Check OSPF status
+#############################
+show_ospf_interface:
+  - command:  show ospf interface
+  - iterate:
+      xpath: //ospf-interface[normalize-space(ospf-interface-state)!='DRother']
+      id: interface-name
+      tests:
+        - is-equal: neighbor-count, 1
+          info: "PASSED! Interface {{id_0}} OSPF neighbor count  {{post['neighbor-count']}}"
+          err: "FAILED! Interface {{id_0}} OSPF neighbor count {{post['neighbor-count']}}"
+ospf_overload:
+- command: show ospf overview
+- iterate:
+    xpath: ospf-overview
+    tests:
+    - not-exists: ospf-configured-overload
+      info: "PASSED! No OSPF overload"
+      err: 'FAILED! OSPF Overload is configured'

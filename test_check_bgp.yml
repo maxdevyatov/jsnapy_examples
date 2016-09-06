@@ -1,0 +1,14 @@
+tests_include:
+- check_bgp
+#############################
+#Check BGP status
+#############################
+check_bgp:
+  - command:  show bgp summary
+  - iterate:
+      xpath: bgp-peer
+      id: peer-address
+      tests:
+        - is-equal: peer-state, Established
+          info: "PASSED! BGP peer {{id_0}} is  {{post['peer-state']}}"
+          err: "FAILED! BGP peer {{id_0}} is  {{post['peer-state']}}"

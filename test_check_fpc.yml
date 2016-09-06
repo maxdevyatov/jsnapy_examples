@@ -1,0 +1,31 @@
+tests_include:
+- show_chassis_fpc
+
+#############################
+#Check FPC status and health
+#############################
+show_chassis_fpc:
+  - command: show chassis fpc
+#Iterate through all FPC
+  - iterate:
+      xpath: //fpc
+      id: './slot'
+      tests:
+        - is-in: state, Online, Empty
+          info: "PASSED! FPC slot {{id_0}} state {{pre['state']}}"
+          err: "FAILED! FPC slot {{id_0}} state {{pre['state']}}"
+#Iterate through online FPC
+  - iterate:
+      xpath: //fpc[normalize-space(state)='Online']
+      id: 'slot'
+      tests:
+        - is-lt: memory-heap-utilization, 50
+          err: "FAILED! FPC slot {{id_0}} heap utilization is {{pre['memory-heap-utilization']}}"
+          info: "PASSED! FPC slot {{id_0}} heap utilization is {{pre['memory-heap-utilization']}}"
+        - is-lt: memory-buffer-utilization, 50
+          err: "FAILED! FPC slot {{id_0}} buffer utilization is {{pre['memory-buffer-utilization']}}"
+          info: "PASSED! FPC slot {{id_0}} buffer utilization is {{pre['memory-buffer-utilization']}}"
+        - is-lt: cpu-total, 30
+          err: "FAILED! FPC slot {{id_0}} CPU utilization is {{pre['cpu-total']}}"
+          info: "PASSED! FPC slot {{id_0}} CPU utilization is {{pre['cpu-total']}}"
+

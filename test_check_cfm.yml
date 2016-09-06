@@ -1,0 +1,14 @@
+tests_include:
+- check_cfm
+#############################
+#Check CFM status
+#############################
+check_cfm:
+  - command:  show oam ethernet connectivity-fault-management interfaces summary
+  - iterate:
+      xpath: cfm-interface-summary
+      id: cfm-interface-name
+      tests:
+        - is-equal: cfm-interface-session-summary/cfm-remote-mep-state, Ok
+          info: "PASSED! Interface {{id_0}} CFM status  {{post['cfm-interface-session-summary/cfm-remote-mep-state']}}"
+          err: "FAILED! Interface {{id_0}} CFM status {{post['cfm-interface-session-summary/cfm-remote-mep-state']}}"
