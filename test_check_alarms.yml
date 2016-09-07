@@ -5,17 +5,18 @@ tests_include:
 show_chassis_alarms:
 - command: show chassis alarms
 - iterate:
-    xpath: alarm-summary
+    xpath: alarm-summary | alarm-detail
     tests:
-    - exists: no-active-alarms
-      err: 'FAILED! There are {{post["active-alarm-count"]}} active system alarms on the routers.'
+    - not-exists: alarm-description
+      err: 'FAILED! There is chassis alarm: {{post["alarm-description"]}}'
       info: 'PASSED! No chassis alarms'
 
 show_system_alarms:
 - command: show system alarms
 - iterate:
-    xpath: alarm-summary
+    xpath: alarm-summary | alarm-detail
     tests:
-    - exists: no-active-alarms
-      err: 'FAILED! There are {{post["active-alarm-count"]}} active system alarms on the routers.'
-      info: 'Passed! No system alarms'
+    - not-exists: alarm-description
+      err: 'FAILED! There is system alarm: {{post["alarm-description"]}}'
+      info: 'PASSED! No system alarms'
+
