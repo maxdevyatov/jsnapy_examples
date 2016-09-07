@@ -1,0 +1,16 @@
+tests_include:
+- resource_monitor
+
+resource_monitor:
+  - command: show system resource-monitor fpc
+  - iterate:
+      xpath: resource-monitor-fpc-information-summary/pfe-num
+      id: resource-monitor-fpc-information-summary/pfe-num 
+      tests:
+        - is-gt: following-sibling::free-nh-memory-rsmon-percent[1]/text(), 20 
+          info: "PASSED! FPC slot {{pre['../fpc-slot']}}  PFE {{post['.']}} free NH mem is {{post['following-sibling::free-nh-memory-rsmon-percent[1]/text()']}}%"  
+          err: "FAILED! FPC slot {{pre['../fpc-slot']}}  PFE {{post['.']}} free NH mem is {{post['following-sibling::free-nh-memory-rsmon-percent[1]/text()']}}%" 
+        - is-gt: following-sibling::free-filter-memory-rsmon-percent[1]/text(), 20
+          info: "PASSED! FPC slot {{pre['../fpc-slot']}}  PFE {{post['.']}} free Filter mem is {{post['following-sibling::free-filter-memory-rsmon-percent[1]/text()']}}%"
+          err: "FAILED! FPC slot {{pre['../fpc-slot']}}  PFE {{post['.']}} free Filter mem is {{post['following-sibling::free-filter-memory-rsmon-percent[1]/text()']}}%"
+
