@@ -1,8 +1,9 @@
+#################################################################
+#   Check that all interface with descriptions are up
+#################################################################
 tests_include:
-- show_interface_description
-#############################
-#Check interface status
-#############################
+  - show_interface_description
+
 show_interface_description:
   - command:  show interfaces descriptions
   - iterate:

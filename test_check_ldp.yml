@@ -1,8 +1,9 @@
+#################################################################
+#   Check that every LDP interface has neighbors
+#################################################################
 tests_include:
-- show_ldp_interface
-#############################
-#Check LDP status
-#############################
+  - show_ldp_interface
+
 show_ldp_interface:
   - command:  show ldp interface
   - iterate:

@@ -1,9 +1,10 @@
+#################################################################
+#   Checks CFM status
+#################################################################
 tests_include:
-- check_cfm
-#############################
-#Check CFM status
-#############################
-check_cfm:
+  - show_oam_ethernet_connectivity-fault-management_interfaces_summary
+
+show_oam_ethernet_connectivity-fault-management_interfaces_summary:
   - command:  show oam ethernet connectivity-fault-management interfaces summary
   - iterate:
       xpath: cfm-interface-summary

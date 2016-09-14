@@ -1,0 +1,15 @@
+#################################################################
+#   Checks LFM status
+#################################################################
+tests_include:
+  - show_oam_ethernet_link-fault-management
+
+show_oam_ethernet_link-fault-management:
+  - command:  show oam ethernet link-fault-management
+  - iterate:
+      xpath: lfmd-interface-information[not(contains(lfmd-interface-name, "ae"))]
+      id: lfmd-interface-name
+      tests:
+        - is-equal: lfmd-discovery-state, Send Any
+          info: "PASSED! Interface {{id_0}} LFM discovery state {{post['lfmd-discovery-state']}}"
+          err: "FAILED! Interface {{id_0}} LFM discovery state {{post['lfmd-discovery-state']}}"

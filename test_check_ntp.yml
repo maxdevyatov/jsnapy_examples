@@ -1,0 +1,15 @@
+#################################################################
+#   Checks NTP status
+#################################################################
+tests_include:
+  - show_ntp_status
+
+show_ntp_status:
+  - command: show ntp status
+  - item:
+      xpath: //output
+      id: .
+      tests:
+        - contains: ., sync_ntp
+          info: "PASSED!  NTP is in sync"
+          err: "FAILED!  NTP is not in sync"

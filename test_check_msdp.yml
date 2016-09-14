@@ -1,0 +1,15 @@
+#################################################################
+#   Checks MSDP sessions status
+#################################################################
+tests_include:
+  - show_msdp
+
+show_msdp:
+  - command:  show msdp
+  - iterate:
+      xpath: msdp-peer
+      id: msdp-peer-address
+      tests:
+        - is-equal: msdp-state, Established
+          info: "PASSED! MSDP peer {{id_0}} is  {{post['msdp-state']}}"
+          err: "FAILED! MSDP peer {{id_0}} is  {{post['msdp-state']}}"

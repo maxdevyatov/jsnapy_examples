@@ -1,8 +1,9 @@
+#################################################################
+#   Checks BFD sessions status
+#################################################################
 tests_include:
-- check_bfd
-#############################
-#Check BFD status
-#############################
+  - check_bfd
+
 check_bfd:
   - command:  show bfd session
   - iterate:

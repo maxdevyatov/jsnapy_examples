@@ -1,0 +1,15 @@
+#################################################################
+#   Check that every PIM interface except lo0 has neighbors
+#################################################################
+tests_include:
+  - show_pim_interfaces
+
+show_pim_interfaces:
+  - command:  show pim interfaces
+  - iterate:
+      xpath: pim-interface[normalize-space(pim-interface-name)!='lo0.0']
+      id: pim-interface-name
+      tests:
+        - is-equal: neighbor-count, 1
+          info: "PASSED! Interface {{id_0}} PIM neighbor count  {{post['neighbor-count']}}"
+          err: "FAILED! Interface {{id_0}} PIM neighbor count {{post['neighbor-count']}}"

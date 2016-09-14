@@ -1,0 +1,15 @@
+#################################################################
+#   Checks LACP status
+#################################################################
+tests_include:
+  - show_lacp_interfaces
+
+show_lacp_interfaces:
+  - command: show lacp interfaces
+  - iterate:
+      xpath: lacp-interface-information/lag-lacp-protocol
+      id: name
+      tests:
+        - is-equal: lacp-mux-state, Collecting distributing
+          info: "PASSED!  Interface {{id_0}} LACP status is {{post['lacp-mux-state']}}"
+          err: "FAILED!  Interface {{id_0}} LACP  status is {{post['lacp-mux-state']}}"

@@ -1,7 +1,10 @@
+#################################################################
+#   Checks Next-Hop and filter memory utilization
+#################################################################
 tests_include:
-- resource_monitor
+  - show_system_resource-monitor_fpc
 
-resource_monitor:
+show_system_resource-monitor_fpc:
   - command: show system resource-monitor fpc
   - iterate:
       xpath: resource-monitor-fpc-information-summary/pfe-num

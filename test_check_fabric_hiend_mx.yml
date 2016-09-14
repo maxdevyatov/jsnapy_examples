@@ -1,20 +1,23 @@
+#################################################################
+#   Checks fabric planes status
+#
+#   For modular chassis only
+#################################################################
 tests_include:
-- show_chassis_fabric
+  - show_chassis_fabric
 
-#############################
-#Check FPC status and health
-#############################
+
 show_chassis_fabric:
   - command: show chassis fabric summary extended 
   - iterate:
       xpath: fm-ext-state-item
       id: './plane-slot'
       tests:
-        - is-in: state, Online, Spare
+        - is-in: state, Online, Spare, Empty
           info: "PASSED! Fabric plane {{id_0}} state {{post['state']}}"
           err: "FAILED! Fabric plane {{id_0}} state {{post['state']}}"
   - iterate:
-      xpath: fm-ext-state-item[normalize-space(state)='Online']
+      xpath: fm-ext-state-item[normalize-space(state)='Online' or normalize-space(state)='Spare']
       id: './plane-slot'
       tests:
         - is-equal: link-error, NO

@@ -1,14 +1,17 @@
+#################################################################
+#   Checks if core files present
+#
+#   For single RE systems like MX960, PTX5000 
+#################################################################
 tests_include:
   - check_core
-#############################
-#Check core files
-#############################
+
 check_core:
   - command: show system core-dumps
   - iterate:
       xpath: //directory-list
       tests:
-          - not-exists: ./directory/file-information/file-name 
-            err: "FAILED! Core file exist <{{post['./directory/file-information/file-name']}}>"
-            info: "PASSED! There is no core file"
+        - not-exists: ./directory/file-information/file-name 
+          err: "FAILED! Core file exist <{{post['./directory/file-information/file-name']}}>"
+          info: "PASSED! There is no core file"
 

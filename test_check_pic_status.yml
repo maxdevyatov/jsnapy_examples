@@ -1,0 +1,15 @@
+#################################################################
+#   Checks PIC status
+#################################################################
+tests_include:
+  - show_chassis_fpc_pic-status
+
+show_chassis_fpc_pic-status:
+  - command: show chassis fpc pic-status
+  - iterate:
+      xpath: //fpc/pic
+      id: ../slot, pic-slot
+      tests:
+        - is-equal: pic-state, Online
+          info: "PASSED! FPC slot {{post['../slot']}} PIC slot {{post['pic-slot']}} is {{post['pic-state']}}"
+          err: "FAILED! FPC slot {{post['../slot']}} PIC slot {{post['pic-slot']}} is {{post['pic-state']}}"

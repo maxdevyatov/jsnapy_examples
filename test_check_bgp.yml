@@ -1,8 +1,9 @@
+#################################################################
+#   Checks BGP sessions status
+#################################################################
 tests_include:
-- check_bgp
-#############################
-#Check BGP status
-#############################
+  - check_bgp
+
 check_bgp:
   - command:  show bgp summary
   - iterate:

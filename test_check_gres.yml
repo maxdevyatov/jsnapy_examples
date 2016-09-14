@@ -1,0 +1,17 @@
+#################################################################
+#   Checks if GRES is ready for switchover
+#
+#   For multi RE systems 
+#################################################################
+tests_include:
+  - request_chassis_routing-engine_master_switch_check
+
+request_chassis_routing-engine_master_switch_check:
+  - command: request chassis routing-engine master switch check
+  - item:
+      xpath: //output
+      id: .
+      tests:
+        - is-equal: ., Switchover Ready
+          info: "PASSED!  Switchover status: {{id_0}}"
+          err: "FAILED!  Switchover status: {{id_0}}"

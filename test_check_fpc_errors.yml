@@ -1,0 +1,23 @@
+#################################################################
+#   Checks the number of errors on FPC
+#
+#   For modular chassis only
+#################################################################
+tests_include:
+  - show_chassis_fpc_errors
+
+show_chassis_fpc_errors:
+  - command: show chassis fpc errors
+  - iterate:
+      xpath: //fpc
+      id: './slot'
+      tests:
+        - is-equal: minor-level-occured, 0
+          info: "PASSED! FPC slot {{id_0}} no minor errors"
+          err: "FAILED! FPC slot {{id_0}} minor errors {{post['state']}}"
+        - is-equal: major-level-occured, 0
+          info: "PASSED! FPC slot {{id_0}} no major errors"
+          err: "FAILED! FPC slot {{id_0}} major errors {{post['state']}}"
+        - is-equal: fatal-level-occured, 0
+          info: "PASSED! FPC slot {{id_0}} no fatal"
+          err: "FAILED! FPC slot {{id_0}} minor errors {{post['state']}}"

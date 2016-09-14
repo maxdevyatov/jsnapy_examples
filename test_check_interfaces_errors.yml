@@ -1,8 +1,9 @@
+#################################################################
+#   Checks interface drops, errors and resource errors counters
+#################################################################
 tests_include:
-- show_interface_extensive
-#############################
-#Check interface error counters
-#############################
+  - show_interface_extensive
+
 show_interface_extensive:
   - command:  show interfaces extensive "[gxe][et]-*/[0-9]"
   - iterate:
