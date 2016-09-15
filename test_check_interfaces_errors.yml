@@ -11,24 +11,59 @@ show_interface_extensive:
       id: name
       tests:
         - is-equal: input-error-list/input-resource-errors, 0
-          info: "PASSED! Interface {{id_0}} has no errors"
-          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-resource-errors']}} resource errors"
-      tests:
-        - is-equal: input-error-list/input-resource-errors, 0
           info: "PASSED! Interface {{id_0}} has no input resource errors"
           err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-resource-errors']}} input resource errors"
-        - is-equal: output-error-list/output-resource-errors, 0
-          info: "PASSED! Interface {{id_0}} has no output resource errors"
-          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-resource-errors']}} output resource errors"
         - is-equal: input-error-list/input-errors, 0
           info: "PASSED! Interface {{id_0}} has no input errors"
           err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-errors']}} input errors"
-        - is-equal: output-error-list/output-errors, 0
-          info: "PASSED! Interface {{id_0}} has no output errors"
-          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-errors']}} output errors"
         - is-equal: input-error-list/input-drops, 0
           info: "PASSED! Interface {{id_0}} has no input drops"
           err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-drops']}} input drops"
+        - is-equal: input-error-list/framing-errors, 0
+          info: "PASSED! Interface {{id_0}} has no framing errors"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/framing-errors']}} input framing errors"
+        - is-equal: input-error-list/input-runts, 0
+          info: "PASSED! Interface {{id_0}} has no input runts"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-runts']}} input runts"
+        - is-equal: input-error-list/input-discards, 0
+          info: "PASSED! Interface {{id_0}} has no input discards"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-discards']}} input discards"
+        - is-equal: input-error-list/input-l3-incompletes, 0
+          info: "PASSED! Interface {{id_0}} has no input L3 incompletes"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-l3-incompletes']}} input L3 incompletes"
+        - is-equal: input-error-list/input-l2-channel-errors, 0
+          info: "PASSED! Interface {{id_0}} has no input L2 channel errors"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-l2-channel-errors']}} input L2 channel errors"
+        - is-equal: input-error-list/input-l2-mismatch-timeouts, 0
+          info: "PASSED! Interface {{id_0}} has no input L2 mismatch timeouts"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-l2-mismatch-timeouts']}} input L2 mismatch timeouts"
+        - is-equal: input-error-list/input-fifo-errors, 0
+          info: "PASSED! Interface {{id_0}} has no input FIFO errors"
+          err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-fifo-errors']}} input FIFO errors"
+        - is-equal: output-error-list/carrier-transitions, 0
+          info: "PASSED! Interface {{id_0}} has no output carrier transitions"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/carrier-transitions']}} output carrier transitions"
+        - is-equal: output-error-list/output-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-errors']}} output errors"
+        - is-equal: output-error-list/output-collisions, 0
+          info: "PASSED! Interface {{id_0}} has no output collisions"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-collisions']}} output collisions"
         - is-equal: output-error-list/output-drops, 0
           info: "PASSED! Interface {{id_0}} has no output drops"
           err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-drops']}} output drops"
+        - is-equal: output-error-list/aged-packets, 0
+          info: "PASSED! Interface {{id_0}} has no output aged packets"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/aged-packets']}} output aged packets"
+        - is-equal: output-error-list/mtu-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output mtu errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/mtu-errors']}} output mtu errors"
+        - is-equal: output-error-list/hs-link-crc-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output hs link crc errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/hs-link-crc-errors']}} output hs link crc errors"
+        - is-equal: output-error-list/output-fifo-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output output fifo errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-fifo-errors']}} output output fifo errors"
+        - is-equal: output-error-list/output-resource-errors, 0
+          info: "PASSED! Interface {{id_0}} has no output resource errors"
+          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-resource-errors']}} output resource errors"
