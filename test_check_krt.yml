@@ -2,9 +2,9 @@
 #   Checks KRT queue
 #################################################################
 tests_include:
-  - show_krt_state
+  - check_krt_queue
 
-show_krt_state:
+check_krt_queue:
   - command:  show krt state
   - item:
       xpath: krt-queue-state

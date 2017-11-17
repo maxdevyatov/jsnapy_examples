@@ -2,10 +2,10 @@
 #   Checks system and chassis alarms
 #################################################################
 tests_include:
-  - show_chassis_alarms
-  - show_system_alarms
+  - check_chassis_alarms
+  - check_system_alarms
 
-show_chassis_alarms:
+check_chassis_alarms:
   - command: show chassis alarms
   - iterate:
       xpath: alarm-summary[boolean(no-active-alarms)] | alarm-detail
@@ -15,7 +15,7 @@ show_chassis_alarms:
           err: 'FAILED! There is chassis alarm: {{post["alarm-description"]}}'
 
 
-show_system_alarms:
+check_system_alarms:
   - command: show system alarms
   - iterate:
       xpath: alarm-summary[boolean(no-active-alarms)] | alarm-detail

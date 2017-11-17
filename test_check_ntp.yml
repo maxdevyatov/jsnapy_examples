@@ -2,9 +2,9 @@
 #   Checks NTP status
 #################################################################
 tests_include:
-  - show_ntp_status
+  - check_ntp_status
 
-show_ntp_status:
+check_ntp_status:
   - command: show ntp status
   - item:
       xpath: //output

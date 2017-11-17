@@ -4,9 +4,9 @@
 #   For multi RE systems 
 #################################################################
 tests_include:
-  - request_chassis_routing-engine_master_switch_check
+  - check_GRES_status
 
-request_chassis_routing-engine_master_switch_check:
+check_GRES_status:
   - command: request chassis routing-engine master switch check
   - item:
       xpath: //output

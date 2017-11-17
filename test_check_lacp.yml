@@ -2,9 +2,9 @@
 #   Checks LACP status
 #################################################################
 tests_include:
-  - show_lacp_interfaces
+  - check_LACP_state
 
-show_lacp_interfaces:
+check_LACP_state:
   - command: show lacp interfaces
   - iterate:
       xpath: lacp-interface-information/lag-lacp-protocol

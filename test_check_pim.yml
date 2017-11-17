@@ -2,9 +2,9 @@
 #   Check that every PIM interface except lo0 has neighbors
 #################################################################
 tests_include:
-  - show_pim_interfaces
+  - check_pim_state
 
-show_pim_interfaces:
+check_pim_state:
   - command:  show pim interfaces
   - iterate:
       xpath: pim-interface[normalize-space(pim-interface-name)!='lo0.0']

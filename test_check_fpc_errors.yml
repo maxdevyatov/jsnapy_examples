@@ -4,9 +4,9 @@
 #   For modular chassis only
 #################################################################
 tests_include:
-  - show_chassis_fpc_errors
+  - check_fpc_errors
 
-show_chassis_fpc_errors:
+check_fpc_errors:
   - command: show chassis fpc errors
   - iterate:
       xpath: //fpc
@@ -14,10 +14,10 @@ show_chassis_fpc_errors:
       tests:
         - is-equal: minor-level-occured, 0
           info: "PASSED! FPC slot {{id_0}} no minor errors"
-          err: "FAILED! FPC slot {{id_0}} minor errors {{post['state']}}"
+          err: "FAILED! FPC slot {{id_0}} minor errors {{post['minor-level-occured']}}"
         - is-equal: major-level-occured, 0
           info: "PASSED! FPC slot {{id_0}} no major errors"
-          err: "FAILED! FPC slot {{id_0}} major errors {{post['state']}}"
+          err: "FAILED! FPC slot {{id_0}} major errors {{post['major-level-occured']}}"
         - is-equal: fatal-level-occured, 0
           info: "PASSED! FPC slot {{id_0}} no fatal"
-          err: "FAILED! FPC slot {{id_0}} minor errors {{post['state']}}"
+          err: "FAILED! FPC slot {{id_0}} minor errors {{post['fatal-level-occured']}}"

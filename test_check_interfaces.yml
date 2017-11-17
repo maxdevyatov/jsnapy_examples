@@ -2,9 +2,9 @@
 #   Check that all interface with descriptions are up
 #################################################################
 tests_include:
-  - show_interface_description
+  - check_interfaces_up
 
-show_interface_description:
+check_interfaces_up:
   - command:  show interfaces descriptions
   - iterate:
       xpath: //physical-interface

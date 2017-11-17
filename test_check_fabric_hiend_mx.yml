@@ -4,10 +4,10 @@
 #   For modular chassis only
 #################################################################
 tests_include:
-  - show_chassis_fabric
+  - check_chassis_fabric_state_and_errors
 
 
-show_chassis_fabric:
+check_chassis_fabric_state_and_errors:
   - command: show chassis fabric summary extended 
   - iterate:
       xpath: fm-ext-state-item

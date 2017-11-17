@@ -2,9 +2,9 @@
 #   Checks PIC status
 #################################################################
 tests_include:
-  - show_chassis_fpc_pic-status
+  - check_pic_status
 
-show_chassis_fpc_pic-status:
+check_pic_status:
   - command: show chassis fpc pic-status
   - iterate:
       xpath: //fpc/pic

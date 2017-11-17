@@ -2,9 +2,9 @@
 #   Checks BGP sessions status
 #################################################################
 tests_include:
-  - check_bgp
+  - check_bgp_peers
 
-check_bgp:
+check_bgp_peers:
   - command:  show bgp summary
   - iterate:
       xpath: bgp-peer

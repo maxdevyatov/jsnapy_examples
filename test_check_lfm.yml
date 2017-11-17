@@ -2,9 +2,9 @@
 #   Checks LFM status
 #################################################################
 tests_include:
-  - show_oam_ethernet_link-fault-management
+  - check_lfm_state
 
-show_oam_ethernet_link-fault-management:
+check_lfm_state:
   - command:  show oam ethernet link-fault-management
   - iterate:
       xpath: lfmd-interface-information[not(contains(lfmd-interface-name, "ae"))]

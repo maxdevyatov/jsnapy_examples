@@ -2,9 +2,9 @@
 #   Checks MSDP sessions status
 #################################################################
 tests_include:
-  - show_msdp
+  - check_MSDP_state
 
-show_msdp:
+check_MSDP_state:
   - command:  show msdp
   - iterate:
       xpath: msdp-peer

@@ -2,9 +2,9 @@
 #   Checks interface drops, errors and resource errors counters
 #################################################################
 tests_include:
-  - show_interface_extensive
+  - check_interface_errors
 
-show_interface_extensive:
+check_interface_errors:
   - command:  show interfaces extensive "[gxe][et]-*/[0-9]"
   - iterate:
       xpath: //physical-interface
@@ -40,9 +40,9 @@ show_interface_extensive:
         - is-equal: input-error-list/input-fifo-errors, 0
           info: "PASSED! Interface {{id_0}} has no input FIFO errors"
           err: "FAILED! Interface {{id_0}} has {{post['input-error-list/input-fifo-errors']}} input FIFO errors"
-        - is-equal: output-error-list/carrier-transitions, 0
-          info: "PASSED! Interface {{id_0}} has no output carrier transitions"
-          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/carrier-transitions']}} output carrier transitions"
+#        - is-equal: output-error-list/carrier-transitions, 0
+#          info: "PASSED! Interface {{id_0}} has no output carrier transitions"
+#          err: "FAILED! Interface {{id_0}} has {{post['output-error-list/carrier-transitions']}} output carrier transitions"
         - is-equal: output-error-list/output-errors, 0
           info: "PASSED! Interface {{id_0}} has no output errors"
           err: "FAILED! Interface {{id_0}} has {{post['output-error-list/output-errors']}} output errors"

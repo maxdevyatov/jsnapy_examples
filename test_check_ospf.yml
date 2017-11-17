@@ -3,10 +3,10 @@
 #   Check that OSPF is not in overload state
 #################################################################
 tests_include:
-  - show_ospf_interface
-  - ospf_overload
+  - check_OSPF_state
+  - check_no_ospf_overload
 
-show_ospf_interface:
+check_OSPF_state:
   - command:  show ospf interface
   - iterate:
       xpath: //ospf-interface[normalize-space(ospf-interface-state)!='DRother']
@@ -15,7 +15,7 @@ show_ospf_interface:
         - is-equal: neighbor-count, 1
           info: "PASSED! Interface {{id_0}} OSPF neighbor count  {{post['neighbor-count']}}"
           err: "FAILED! Interface {{id_0}} OSPF neighbor count {{post['neighbor-count']}}"
-ospf_overload:
+check_no_ospf_overload:
   - command: show ospf overview
   - iterate:
       xpath: ospf-overview

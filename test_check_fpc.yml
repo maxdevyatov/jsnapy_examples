@@ -2,9 +2,9 @@
 #Checks FPC status, CPU, buffer and heap memory utilization
 #################################################################
 tests_include:
-  - show_chassis_fpc
+  - check_fpc_status_and_utilization
 
-show_chassis_fpc:
+check_fpc_status_and_utilization:
   - command: show chassis fpc
 #Iterate through all FPC
   - iterate:
