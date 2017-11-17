@@ -1,0 +1,17 @@
+#################################################################
+#   Checks if NSR is ready for switchover
+#
+#   For multi RE systems 
+#################################################################
+tests_include:
+  - check_NSR_status
+
+check_NSR_status:
+  - command: show task replication
+  - iterate:
+      xpath: //task-protocol-replication-name
+      id: .
+      tests:
+        - is-equal: following-sibling::task-protocol-replication-state[1], Complete
+          info: "PASSED!  NSR replication status: {{id_0}} {{post['following-sibling::task-protocol-replication-state[1]']}}"
+          err: "FAILED!  NSR replication status: {{id_0}} {{post['following-sibling::task-protocol-replication-state[1]']}}"

@@ -1,0 +1,32 @@
+#################################################################
+#   Compare inteface state
+#
+#################################################################
+tests_include:
+  - compare_interface_state
+  - compare_logical_interface_state
+
+compare_interface_state:
+  - command: show interface terse
+  - iterate:
+      xpath: //physical-interface
+      id: name
+      tests:
+        - no-diff: ./admin-status
+          info: "PASSED!  {{id_0[0]}} admin status pre: {{pre['admin-status']}} post: {{post['admin-status']}}"
+          err: "FAILED!  {{id_0[0]}} admin status neighbor pre: {{pre['admin-status']}} post: {{post['admin-status']}}"
+        - no-diff: ./oper-status
+          info: "PASSED!  {{id_0[0]}} oper status pre: {{pre['oper-status']}} post: {{post['oper-status']}}"
+          err: "FAILED!  {{id_0[0]}} oper status neighbor pre: {{pre['oper-status']}} post: {{post['oper-status']}}"          
+compare_logical_interface_state:
+  - command: show interface terse
+  - iterate:
+      xpath: //logical-interface
+      id: name
+      tests:
+        - no-diff: ./admin-status
+          info: "PASSED!  {{id_0[0]}} admin status pre: {{pre['admin-status']}} post: {{post['admin-status']}}"
+          err: "FAILED!  {{id_0[0]}} admin status neighbor pre: {{pre['admin-status']}} post: {{post['admin-status']}}"
+        - no-diff: ./oper-status
+          info: "PASSED!  {{id_0[0]}} oper status pre: {{pre['oper-status']}} post: {{post['oper-status']}}"
+          err: "FAILED!  {{id_0[0]}} oper status neighbor pre: {{pre['oper-status']}} post: {{post['oper-status']}}"

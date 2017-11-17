@@ -1,0 +1,19 @@
+#################################################################
+#   Compare STP statess
+#
+#################################################################
+tests_include:
+  - compare_STP_states
+
+compare_STP_states:
+  - command: show spanning-tree interface
+  - iterate:
+      xpath: //stp-interface-entry
+      id: interface-name
+      tests:
+        - no-diff: ./port-state
+          info: "PASSED!  {{id_0[0]}} STP state pre: {{pre['port-state']}} post: {{post['port-state']}}"
+          err: "FAILED!  {{id_0[0]}} STP state pre: {{pre['port-state']}} post: {{post['port-state']}}"
+        - no-diff: ./port-role
+          info: "PASSED!  {{id_0[0]}} STP role pre: {{pre['port-role']}} post: {{post['port-role']}}"
+          err: "FAILED!  {{id_0[0]}} STP role pre: {{pre['port-role']}} post: {{post['port-role']}}"          

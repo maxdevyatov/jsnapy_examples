@@ -1,0 +1,19 @@
+#################################################################
+#   Compare the number of routes for each BGP peer
+#
+#################################################################
+tests_include:
+  - compare_bgp_peers_routes
+
+compare_bgp_peers_routes:
+  - command: show bgp summary
+  - iterate:
+      xpath: /bgp-information/bgp-peer/bgp-rib
+      id: ../peer-address, name
+      tests:
+        - no-diff: ./received-prefix-count
+          info: "PASSED!  {{id_0[0]}} {{id_1[0]}} received routes pre: {{pre['received-prefix-count']}} post: {{post['received-prefix-count']}}"
+          err: "FAILED!  {{id_0[0]}} {{id_1[0]}} received routes pre: {{pre['received-prefix-count']}} post: {{post['received-prefix-count']}}"
+        - no-diff: ./active-prefix-count
+          info: "PASSED!  {{id_0[0]}} {{id_1[0]}} active routes pre: {{pre['active-prefix-count']}} post: {{post['active-prefix-count']}}"
+          err: "FAILED!  {{id_0[0]}} {{id_1[0]}} active routes pre: {{pre['active-prefix-count']}} post: {{post['active-prefix-count']}}"

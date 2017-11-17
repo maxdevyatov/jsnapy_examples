@@ -1,0 +1,19 @@
+#################################################################
+#   Compare the number of routes for each table/protocol
+#
+#################################################################
+tests_include:
+  - compare_route_summary
+
+compare_route_summary:
+  - command: show route summary
+  - iterate:
+      xpath: /route-summary-information/route-table/protocols
+      id: ../table-name, protocol-name
+      tests:
+        - no-diff: ./protocol-route-count
+          info: "PASSED!  {{id_0[0]}} {{id_1[0]}} total routes pre: {{pre['protocol-route-count']}} post: {{post['protocol-route-count']}}"
+          err: "FAILED!  {{id_0[0]}} {{id_1[0]}} total routes pre: {{pre['protocol-route-count']}} post: {{post['protocol-route-count']}}"
+        - no-diff: ./active-route-count
+          info: "PASSED!  {{id_0[0]}} {{id_1[0]}} active routes pre: {{pre['active-route-count']}} post: {{post['active-route-count']}}"
+          err: "FAILED!  {{id_0[0]}} {{id_1[0]}} active routes pre: {{pre['active-route-count']}} post: {{post['active-route-count']}}"

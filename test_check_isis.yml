@@ -1,0 +1,16 @@
+#################################################################
+#   Check that every OSPF interface except those in DRother status has neighbors
+#   Check that OSPF is not in overload state
+#################################################################
+tests_include:
+  - check_ISIS_adjacencies
+
+check_ISIS_adjacencies:
+  - command: show isis interface detail
+  - iterate:
+      xpath: //interface-level-data[not(passive)]
+      id: ../interface-name, level
+      tests:
+        - is-equal: adjacency-count, 1
+          info: "PASSED! Interface {{id_0}} level {{id_1}} ISIS adjacency count: {{post['adjacency-count']}}"
+          err: "FAILED! Interface {{id_0}} level {{id_1}} ISIS adjacency count: {{post['adjacency-count']}}"

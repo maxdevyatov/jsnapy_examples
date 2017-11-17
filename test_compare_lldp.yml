@@ -1,0 +1,16 @@
+#################################################################
+#   Compare LLDP neighbors
+#
+#################################################################
+tests_include:
+  - compare_lldp_neighbors
+
+compare_lldp_neighbors:
+  - command: show lldp neighbors
+  - iterate:
+      xpath: /lldp-neighbors-information/lldp-neighbor-information
+      id: lldp-local-port-id
+      tests:
+        - no-diff: ./lldp-remote-system-name
+          info: "PASSED!  {{id_0}} LLDP neighbor pre: {{pre['lldp-remote-system-name']}} post: {{post['lldp-remote-system-name']}}"
+          err: "FAILED!  {{id_0}} LLDP neighbor pre: {{pre['lldp-remote-system-name']}} post: {{post['lldp-remote-system-name']}}"

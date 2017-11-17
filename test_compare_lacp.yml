@@ -1,0 +1,16 @@
+#################################################################
+#   Compare LACP ports states
+#
+#################################################################
+tests_include:
+  - compare_LACP
+
+compare_LACP:
+  - command: show lacp interfaces
+  - iterate:
+      xpath: //lag-lacp-protocol
+      id: name
+      tests:
+        - no-diff: ./lacp-mux-state
+          info: "PASSED!  {{post['../lag-lacp-header/aggregate-name']}} {{id_0[0]}} LACP state pre: {{pre['lacp-mux-state']}} post: {{post['lacp-mux-state']}}"
+          err: "FAILED!  {{post['../lag-lacp-header/aggregate-name']}} {{id_0[0]}} LACP state pre: {{pre['lacp-mux-state']}} post: {{post['lacp-mux-state']}}"
